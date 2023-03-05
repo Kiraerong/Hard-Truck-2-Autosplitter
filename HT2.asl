@@ -33,8 +33,7 @@ split {
     }
 
     var perce = (int)(current.mono * 100);
-    if (perce >= 51) {return settings["51%"] && vars.completed.Add(51);} //needs to split at 51% for monopoly runs
-    perce -= (perce % 5);
+    perce -= settings.ContainsKey(perce + "%") ? 0 : (perce % 5);
 
     return settings[perce + "%"] && vars.completed.Add(perce);
 }
