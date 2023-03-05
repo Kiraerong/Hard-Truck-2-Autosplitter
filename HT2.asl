@@ -33,6 +33,8 @@ split {
     }
 
     var perce = (int)(current.mono * 100);
+    perce -= (perce % 5);
+
     return settings[perce + "%"] && vars.completed.Add(perce);
 }
 
