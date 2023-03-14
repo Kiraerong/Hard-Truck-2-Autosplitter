@@ -33,7 +33,12 @@ split {
     }
 
     var perce = (int)(current.mono * 100);
-    perce -= settings.ContainsKey(perce + "%") ? 0 : (perce % 5);
+    if (perce >= 51 && perce < 55 && settings["51%"]) {
+        return vars.completed.Add(51);
+    }
+    else {
+        perce -= perce % 5;
+    }
 
     return settings[perce + "%"] && vars.completed.Add(perce);
 }
