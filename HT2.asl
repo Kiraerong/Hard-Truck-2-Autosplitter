@@ -32,17 +32,16 @@ split {
         return;
     }
 
+    var oldPerce = (int)(old.mono * 100);
     var perce = (int)(current.mono * 100);
-    if (perce >= 51 && perce < 55 && settings["51%"]) {
-        return vars.completed.Add(51);
-    }
-    else {
-        perce -= perce % 5;
-    }
 
-    return settings[perce + "%"] && vars.completed.Add(perce);
+    for (int i = oldPerce + 1; i <= perce; i++) {
+        if (settings[i + "%"] && vars.completed.Add(i)) {
+            return true;
+        }
+    }
 }
 
-reset  {
+reset {
     return old.tonn > 0d && current.tonn == 0d;
 }
